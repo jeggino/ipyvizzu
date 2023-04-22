@@ -3,7 +3,7 @@ import streamlit as st
 
 from streamlit_vizzu import Config, Data, Style, VizzuChart
 
-data_frame = pd.read_csv("pages/sales.csv")
+data_frame = pd.read_csv("https://github.com/vizzu-streamlit/streamlit-vizzu/blob/main/data/sales.csv")
 data = Data()
 data.add_data_frame(data_frame)
 
