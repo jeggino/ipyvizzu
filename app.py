@@ -3,61 +3,113 @@ import streamlit as st
 
 from streamlit_vizzu import Config, Data, Style, VizzuChart
 
-data_frame = pd.read_csv("https://github.com/vizzu-streamlit/streamlit-vizzu/blob/main/data/sales.csv")
+data_frame = pd.read_csv(
+    "https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv",
+    dtype={"Year": str, "Timeseries": str},
+)
 data = Data()
 data.add_data_frame(data_frame)
+
 
 chart = VizzuChart(height=360)
 
 chart.animate(data)
 chart.feature("tooltip", True)
 
-bg_color = st.session_state.get("bg_color", "#fff")
-items = st.session_state.get("items", ["Shoes", "Handbags", "Gloves", "Accessories"])
-measure = st.session_state.get("measure", "Sales")
-compare_by = st.session_state.get("compare_by", "Region")
-coords = st.session_state.get("coords", "Cartesian")
-order = st.session_state.get("order", "By value")
+chart.animate(
 
-style = Style({"plot": {"backgroundColor": bg_color}})
+    Config(
 
-filter = " || ".join([f"record['Product'] == '{item}'" for item in items])
-title = f"{measure} of " + ", ".join(items)
+        {
 
-if compare_by == "Product":
-    y = ["Product"]
-    x = [measure]
-    color = None
+            "channels": {
 
-elif compare_by == "Region":
-    y = [measure]
-    x = ["Region"]
-    color = ["Region"]
+                "x": ["Value 1", "Joy factors"],
 
-else:
-    y = ["Product"]
-    x = [measure, "Region"]
-    color = ["Region"]
+                "color": "Joy factors",
 
-config = {
-    "title": title,
-    "y": y,
-    "label": measure,
-    "x": x,
-    "color": color,
-}
+                "label": "Value 1",
 
-if coords == "Polar (mobile)":
-    config["coordSystem"] = "polar"
-else:
-    config["coordSystem"] = "cartesian"
+            },
 
-if order == "Alphabetically":
-    config["sort"] = "none"
-else:
-    config["sort"] = "byValue"
+            "title": "Pie Chart",
 
-chart.animate(Data.filter(filter), Config(config), style, delay=0.1)
+            "coordSystem": "polar",
+
+        }
+
+    )
+
+)
+
+
+
+chart.animate(
+
+    Config(
+
+        {
+
+            "channels": {
+
+                "x": [
+
+                    "Value 1",
+
+                    "Joy factors",
+
+                    "Region",
+
+                    "Country code",
+
+                ],
+
+                "label": None,
+
+            }
+
+        }
+
+    ),
+
+    duration="500ms",
+
+)
+
+
+
+chart.animate(
+
+    Config(
+
+        {
+
+            "channels": {
+
+                "x": [
+
+                    "Value 1",
+
+                    "Joy factors",
+
+                    "Region",
+
+                    "Country code",
+
+                ],
+
+                "y": {"set": "Value 3", "range": {"min": "-60%"}},
+
+            },
+
+            "title": "Coxcomb Chart",
+
+        }
+
+    )
+
+)
+    
 output = chart.show()
 
 st.multiselect(
