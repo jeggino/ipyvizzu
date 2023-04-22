@@ -97,4 +97,4 @@ chart.animate(
 
 
 
-html(chart, width=650, height=370)
+html(chart._repr_html_(), width=650, height=370)
