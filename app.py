@@ -13,8 +13,9 @@ chart = Chart(
 # create and add data to Chart
 
 data = Data()
-data_frame = pd.read_csv(
-    "https://ipyvizzu.vizzuhq.com/0.15/showcases/titanic/titanic.csv"
+ddata_frame = pd.read_csv(
+    "https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv",
+    dtype={"Year": str, "Timeseries": str},
 )
 data.add_data_frame(data_frame)
 
@@ -25,27 +26,50 @@ chart.animate(data)
 chart.animate(
     Config(
         {
-            "x": "Count",
-            "y": "Sex",
-            "label": "Count",
-            "title": "Passengers of the Titanic",
+            "channels": {
+                "x": ["Value 1", "Joy factors"],
+                "color": "Joy factors",
+                "label": "Value 1",
+            },
+            "title": "Pie Chart",
+            "coordSystem": "polar",
         }
     )
 )
+ 
 chart.animate(
     Config(
         {
-            "x": ["Count", "Survived"],
-            "label": ["Count", "Survived"],
-            "color": "Survived",
+            "channels": {
+                "x": [
+                    "Value 1",
+                    "Joy factors",
+                    "Region",
+                    "Country code",
+                ],
+                "label": None,
+            }
+        }
+    ),
+    duration="500ms",
+)
+ 
+chart.animate(
+    Config(
+        {
+            "channels": {
+                "x": [
+                    "Value 1",
+                    "Joy factors",
+                    "Region",
+                    "Country code",
+                ],
+                "y": {"set": "Value 3", "range": {"min": "-60%"}},
+            },
+            "title": "Coxcomb Chart",
         }
     )
 )
-chart.animate(Config({"x": "Count", "y": ["Sex", "Survived"]}))
-
-# add style to Chart
-
-chart.animate(Style({"title": {"fontSize": 35}}))
 
  
  
