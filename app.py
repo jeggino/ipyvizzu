@@ -68,9 +68,7 @@ chart.animate(
             },
             "title": "Coxcomb Chart",
         }
-    ),
-    playState="paused",
-    position=0.5,
+    )
 )
 
 chart.feature("tooltip", True) 
