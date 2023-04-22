@@ -71,7 +71,7 @@ chart.animate(
     )
 )
 
- 
+chart.control.seek("50%")
  
 # generate Chart's html code
  
