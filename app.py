@@ -1,127 +1,127 @@
-	# import streamlit, pandas and ipyvizzu
+# import streamlit, pandas and ipyvizzu
 
-	 
 
-	from streamlit.components.v1 import html
 
-	import pandas as pd
+from streamlit.components.v1 import html
 
-	from ipyvizzu import Chart, Data, Config, Style, DisplayTarget
+import pandas as pd
 
-	 
+from ipyvizzu import Chart, Data, Config, Style, DisplayTarget
 
-	 
 
-	def create_chart():
 
-	    # initialize Chart
 
-	 
 
-	    chart = Chart(
+def create_chart():
 
-	        width="640px", height="360px", display=DisplayTarget.MANUAL
+    # initialize Chart
 
-	    )
 
-	 
 
-	    # create and add data to Chart
+    chart = Chart(
 
-	 
+	width="640px", height="360px", display=DisplayTarget.MANUAL
 
-	    data = Data()
+    )
 
-	    data_frame = pd.read_csv(
 
-	        "https://ipyvizzu.vizzuhq.com/0.15/showcases/titanic/titanic.csv"
 
-	    )
+    # create and add data to Chart
 
-	    data.add_data_frame(data_frame)
 
-	 
 
-	    chart.animate(data)
+    data = Data()
 
-	 
+    data_frame = pd.read_csv(
 
-	    # add config to Chart
+	"https://ipyvizzu.vizzuhq.com/0.15/showcases/titanic/titanic.csv"
 
-	 
+    )
 
-	    chart.animate(
+    data.add_data_frame(data_frame)
 
-	        Config(
 
-	            {
 
-	                "x": "Count",
+    chart.animate(data)
 
-	                "y": "Sex",
 
-	                "label": "Count",
 
-	                "title": "Passengers of the Titanic",
+    # add config to Chart
 
-	            }
 
-	        )
 
-	    )
+    chart.animate(
 
-	    chart.animate(
+	Config(
 
-	        Config(
+	    {
 
-	            {
+		"x": "Count",
 
-	                "x": ["Count", "Survived"],
+		"y": "Sex",
 
-	                "label": ["Count", "Survived"],
+		"label": "Count",
 
-	                "color": "Survived",
+		"title": "Passengers of the Titanic",
 
-	            }
+	    }
 
-	        )
+	)
 
-	    )
+    )
 
-	    chart.animate(Config({"x": "Count", "y": ["Sex", "Survived"]}))
+    chart.animate(
 
-	 
+	Config(
 
-	    # add style to Chart
+	    {
 
-	 
+		"x": ["Count", "Survived"],
 
-	    chart.animate(Style({"title": {"fontSize": 35}}))
+		"label": ["Count", "Survived"],
 
-	 
+		"color": "Survived",
 
-	    # return generated html code
+	    }
 
-	 
+	)
 
-	    return chart._repr_html_()
+    )
 
-	 
+    chart.animate(Config({"x": "Count", "y": ["Sex", "Survived"]}))
 
-	 
 
-	# generate Chart's html code
 
-	 
+    # add style to Chart
 
-	CHART = create_chart()
 
-	 
 
-	 
+    chart.animate(Style({"title": {"fontSize": 35}}))
 
-	# display Chart
 
-	 
 
-	html(CHART, width=650, height=370)
+    # return generated html code
+
+
+
+    return chart._repr_html_()
+
+
+
+
+
+# generate Chart's html code
+
+
+
+CHART = create_chart()
+
+
+
+
+
+# display Chart
+
+
+
+html(CHART, width=650, height=370)
