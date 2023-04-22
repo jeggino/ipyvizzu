@@ -1,12 +1,13 @@
 # import streamlit, pandas and ipyvizzu
-
-
-
 from streamlit.components.v1 import html
-
 import pandas as pd
-
-from ipyvizzu import Chart, Data, Config, Style, DisplayTarget
+from ipyvizzu import Data, Config, Style
+from ipyvizzustory import Story, Slide, Step
+import pathlib
+import shutil
+from bs4 import BeautifulSoup
+import ssl
+import streamlit as st 
 
 
 
