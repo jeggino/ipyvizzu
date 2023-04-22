@@ -9,113 +9,85 @@ from bs4 import BeautifulSoup
 import ssl
 import streamlit as st 
 
+import pandas as pd
+
+from ipyvizzu import Chart, Data, Config, Style
 
 
 
+data_frame = pd.read_csv(
 
-def create_chart():
+    "https://ipyvizzu.vizzuhq.com/0.15/assets/data/chart_types_eu_data_14.csv",
 
-    # initialize Chart
+    dtype={"Year": str, "Timeseries": str},
 
+)
 
+data = Data()
 
-    chart = Chart(
-
-	width="640px", height="360px", display=DisplayTarget.MANUAL
-
-    )
-
-
-
-    # create and add data to Chart
+data.add_data_frame(data_frame)
 
 
 
-    data = Data()
+chart = Chart()
 
-    data_frame = pd.read_csv(
+chart.animate(data)
 
-	"https://ipyvizzu.vizzuhq.com/0.15/showcases/titanic/titanic.csv"
+chart.animate(
 
-    )
+    Config(
 
-    data.add_data_frame(data_frame)
+	{
 
+	    "channels": {
 
+		"x": "Year",
 
-    chart.animate(data)
+		"y": ["Value 2 (+)", "Country"],
 
+		"color": "Country",
 
+	    },
 
-    # add config to Chart
+	    "title": "Stacked Area Chart",
 
+	    "geometry": "area",
 
-
-    chart.animate(
-
-	Config(
-
-	    {
-
-		"x": "Count",
-
-		"y": "Sex",
-
-		"label": "Count",
-
-		"title": "Passengers of the Titanic",
-
-	    }
-
-	)
+	}
 
     )
 
-    chart.animate(
+)
 
-	Config(
 
-	    {
 
-		"x": ["Count", "Survived"],
+chart.animate(
 
-		"label": ["Count", "Survived"],
+    Config({"title": "100% Stacked Area Chart", "align": "stretch"})
 
-		"color": "Survived",
+)
 
-	    }
 
-	)
+
+chart.animate(
+
+    Config(
+
+	{
+
+	    "channels": {"y": {"range": {"max": "100%"}}},
+
+	    "title": "Split Area Chart",
+
+	    "align": "min",
+
+	    "split": True,
+
+	}
 
     )
 
-    chart.animate(Config({"x": "Count", "y": ["Sex", "Survived"]}))
-
-
-
-    # add style to Chart
-
-
-
-    chart.animate(Style({"title": {"fontSize": 35}}))
-
-
-
-    # return generated html code
-
-
-
-    return chart._repr_html_()
-
-
-
-
-
-# generate Chart's html code
-
-
-
-CHART = create_chart()
+)
 
 
 
@@ -125,4 +97,4 @@ CHART = create_chart()
 
 
 
-html(CHART, width=650, height=370)
+html(chart, width=650, height=370)
