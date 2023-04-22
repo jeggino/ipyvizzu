@@ -1,25 +1,11 @@
 # import streamlit, pandas and ipyvizzu
 from streamlit.components.v1 import html
-import pandas as pd
-from ipyvizzustory import Story, Slide, Step
-import pathlib
-import shutil
-from bs4 import BeautifulSoup
-import ssl
 import streamlit as st 
-
 import pandas as pd
-
-
-
-
 from ipyvizzu import Chart, Data, Config, Style, DisplayTarget
  
  
-data_frame = pd.read_csv(
-   "https://ipyvizzu.vizzuhq.com/0.15/showcases/musicformats/musicformats.csv",
-   dtype={"Year": str},
-)
+data_frame = pd.read_csv("https://ipyvizzu.vizzuhq.com/0.15/showcases/musicformats/musicformats.csv",dtype={"Year": str},)
 data = Data()
 data.add_data_frame(data_frame)
 
