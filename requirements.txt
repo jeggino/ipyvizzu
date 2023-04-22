@@ -5,4 +5,4 @@ streamlit
 numpy
 lxml
 beautifulsoup4
-streamlit_vizzu 
+streamlit-vizzu 
