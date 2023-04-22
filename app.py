@@ -68,10 +68,12 @@ chart.animate(
             },
             "title": "Coxcomb Chart",
         }
-    )
+    ),
+    playState="paused",
+    position=0.5,
 )
 
-chart.control.seek("50%")
+chart.control.play()
  
 # generate Chart's html code
  
