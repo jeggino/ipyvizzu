@@ -1,7 +1,7 @@
 # import streamlit, pandas and ipyvizzu
 from streamlit.components.v1 import html
 import pandas as pd
-from ipyvizzu import Data, Config, Style
+from ipyvizzu import Data, Config, Style, Chart
 from ipyvizzustory import Story, Slide, Step
 import pathlib
 import shutil
