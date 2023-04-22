@@ -51,7 +51,7 @@ chart.animate(
             }
         }
     ),
-    duration="500ms",
+    duration="5s",
 )
  
 chart.animate(
