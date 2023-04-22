@@ -15,72 +15,72 @@ data.add_data_frame(data_frame)
 chart = Chart()
 chart.animate(data)
 
-	chart.animate(
+chart.animate(
 
-	    Config(
+    Config(
 
-	        {
+	{
 
-	            "channels": {
+	    "channels": {
 
-	                "x": "Year",
+		"x": "Year",
 
-	                "y": ["Year", "Value 5 (+/-)"],
+		"y": ["Year", "Value 5 (+/-)"],
 
-	                "color": {
+		"color": {
 
-	                    "set": ["Value 5 (+/-)"],
+		    "set": ["Value 5 (+/-)"],
 
-	                    "range": {"min": "-45", "max": "45"},
+		    "range": {"min": "-45", "max": "45"},
 
-	                },
+		},
 
-	                "noop": "Country",
+		"noop": "Country",
 
-	                "label": "Value 5 (+/-)",
+		"label": "Value 5 (+/-)",
 
-	            },
+	    },
 
-	            "title": "Waterfall Chart",
+	    "title": "Waterfall Chart",
 
-	            "legend": "color",
+	    "legend": "color",
 
-	        }
+	}
 
-	    ),
+    ),
 
-	    Style(
+    Style(
 
-	        {
+	{
 
-	            "plot": {
+	    "plot": {
 
-	                "marker": {
+		"marker": {
 
-	                    "colorGradient": "#3d51b8 0,#6389ec 0.15,#9fbffa 0.35,#d5d7d9 0.5,#f4b096 0.65,#e36c56 0.85,#ac1727 1",
+		    "colorGradient": "#3d51b8 0,#6389ec 0.15,#9fbffa 0.35,#d5d7d9 0.5,#f4b096 0.65,#e36c56 0.85,#ac1727 1",
 
-	                    "label": {"position": "top"},
+		    "label": {"position": "top"},
 
-	                }
+		}
 
-	            }
+	    }
 
-	        }
+	}
 
-	    ),
+    ),
 
-	)
+)
 
-	 
 
-	chart.animate(
 
-	    Config(
+chart.animate(
 
-	        {"channels": {"y": "Value 5 (+/-)"}, "title": "Column Chart"}
+    Config(
 
-	    )
+	{"channels": {"y": "Value 5 (+/-)"}, "title": "Column Chart"}
 
-	)
+    )
+
+)
  
 html(chart._repr_html_())
