@@ -51,7 +51,7 @@ chart.animate(
             }
         }
     ),
-    duration="5s",
+    duration="500ms",
 )
  
 chart.animate(
@@ -73,8 +73,7 @@ chart.animate(
     position=0.5,
 )
 
-chart.control.play()
- 
+chart.feature("tooltip", True) 
 # generate Chart's html code
  
 CHART = chart._repr_html_()
