@@ -13,7 +13,7 @@ chart = Chart(
 # create and add data to Chart
 
 data = Data()
-ddata_frame = pd.read_csv(
+data_frame = pd.read_csv(
     "https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv",
     dtype={"Year": str, "Timeseries": str},
 )
