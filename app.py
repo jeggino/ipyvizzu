@@ -11,90 +11,66 @@ import streamlit as st
 
 import pandas as pd
 
-from ipyvizzu import Chart, Data, Config, Style
 
 
 
-data_frame = pd.read_csv(
-
-    "https://ipyvizzu.vizzuhq.com/0.15/assets/data/chart_types_eu_data_14.csv",
-
-    dtype={"Year": str, "Timeseries": str},
-
-)
-
-data = Data()
-
-data.add_data_frame(data_frame)
-
-
-
-chart = Chart()
-
-chart.animate(data)
-
-chart.animate(
-
-    Config(
-
-	{
-
-	    "channels": {
-
-		"x": "Year",
-
-		"y": ["Value 2 (+)", "Country"],
-
-		"color": "Country",
-
-	    },
-
-	    "title": "Stacked Area Chart",
-
-	    "geometry": "area",
-
-	}
-
+from ipyvizzu import Chart, Data, Config, Style, DisplayTarget
+ 
+ 
+def create_chart():
+    # initialize Chart
+ 
+    chart = Chart(
+        width="640px", height="360px", display=DisplayTarget.MANUAL
     )
-
-)
-
-
-
-chart.animate(
-
-    Config({"title": "100% Stacked Area Chart", "align": "stretch"})
-
-)
-
-
-
-chart.animate(
-
-    Config(
-
-	{
-
-	    "channels": {"y": {"range": {"max": "100%"}}},
-
-	    "title": "Split Area Chart",
-
-	    "align": "min",
-
-	    "split": True,
-
-	}
-
+ 
+    # create and add data to Chart
+ 
+    data = Data()
+    data_frame = pd.read_csv(
+        "https://ipyvizzu.vizzuhq.com/0.15/showcases/titanic/titanic.csv"
     )
-
-)
-
-
-
-
-
+    data.add_data_frame(data_frame)
+ 
+    chart.animate(data)
+ 
+    # add config to Chart
+ 
+    chart.animate(
+        Config(
+            {
+                "x": "Count",
+                "y": "Sex",
+                "label": "Count",
+                "title": "Passengers of the Titanic",
+            }
+        )
+    )
+    chart.animate(
+        Config(
+            {
+                "x": ["Count", "Survived"],
+                "label": ["Count", "Survived"],
+                "color": "Survived",
+            }
+        )
+    )
+    chart.animate(Config({"x": "Count", "y": ["Sex", "Survived"]}))
+ 
+    # add style to Chart
+ 
+    chart.animate(Style({"title": {"fontSize": 35}}))
+ 
+    # return generated html code
+ 
+    return chart._repr_html_()
+ 
+ 
+# generate Chart's html code
+ 
+CHART = create_chart()
+ 
+ 
 # display Chart
-
-
-
-html(chart._repr_html_(), width=650, height=370)
+ 
+html(CHART, width=650, height=370)
