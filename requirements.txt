@@ -6,4 +6,4 @@ numpy
 lxml
 beautifulsoup4
 streamlit-vizzu 
-ag-grid
+streamlit-aggrid
