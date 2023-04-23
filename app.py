@@ -110,4 +110,4 @@ from streamlit_pandas_profiling import st_profile_report
 df = pd.read_csv("https://storage.googleapis.com/tf-datasets/titanic/train.csv")
 pr = data_frame.profile_report()
 
-st_profile_report(data_frame)
+st_profile_report(pr)
