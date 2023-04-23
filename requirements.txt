@@ -7,3 +7,4 @@ lxml
 beautifulsoup4
 streamlit-vizzu 
 streamlit-aggrid
+streamlit-pandas-profiling
