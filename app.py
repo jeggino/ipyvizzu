@@ -102,5 +102,5 @@ elif option == "gdf_1":
  df = gpd.read_file("https://maps.amsterdam.nl/open_geodata/geojson_lnglat.php?KAARTLAAG=FUNCTIEMIX&THEMA=functiemix")
 
  
-AgGrid(df, gridOptions=gridoptions, allow_unsafe_jscode=True, height=500, theme='alpine')
+AgGrid(df,  allow_unsafe_jscode=True, height=500, theme='alpine')
 st_profile_report(df.profile_report())
