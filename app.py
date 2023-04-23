@@ -86,28 +86,21 @@ from st_aggrid import AgGrid
 from st_aggrid import JsCode
 from st_aggrid.grid_options_builder import GridOptionsBuilder
 
-
-data_frame = pd.read_csv(
-    "https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv",
-    dtype={"Year": str, "Timeseries": str},
-)
-
-keyword = st.text_input('choose keyword')
-standards_df = data_frame[data_frame['Joy factors'].str.contains(keyword)]
-
-# Display the DataFrame
-gd=GridOptionsBuilder.from_dataframe(standards_df)
-gd.configure_column("id", headerName="id", cellRenderer=JsCode('''function(params) {return '<a href="https://drive.google.com/file/d/' + params.value + '/view" target="_blank">' + params.value + '</a>'}'''),
-                width=300)
-gridoptions=gd.build()
-
-
-AgGrid(standards_df, gridOptions=gridoptions, allow_unsafe_jscode=True, height=500, theme='alpine')
-
 import pandas_profiling
 from streamlit_pandas_profiling import st_profile_report
+import geopandas as gpd
 
-df = pd.read_csv("https://storage.googleapis.com/tf-datasets/titanic/train.csv")
-pr = data_frame.profile_report()
+option = st.selectbox('Select a dataset',('df_1', 'df_2', 'gdf_1'))
 
-st_profile_report(pr)
+if option == df_1:
+ df = pd.read_csv("https://storage.googleapis.com/tf-datasets/titanic/train.csv")
+
+ elif option == df_2:
+ df = pd.read_csv("https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv", dtype={"Year": str, "Timeseries": str},)
+
+elif option == gdf_1:
+ df = gpd.read_file("https://maps.amsterdam.nl/open_geodata/geojson_lnglat.php?KAARTLAAG=FUNCTIEMIX&THEMA=functiemix")
+
+ 
+AgGrid(df, gridOptions=gridoptions, allow_unsafe_jscode=True, height=500, theme='alpine')
+st_profile_report(df.profile_report())
