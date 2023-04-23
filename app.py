@@ -104,5 +104,10 @@ gridoptions=gd.build()
 
 AgGrid(standards_df, gridOptions=gridoptions, allow_unsafe_jscode=True, height=500, theme='alpine')
 
+import pandas_profiling
+from streamlit_pandas_profiling import st_profile_report
 
+df = pd.read_csv("https://storage.googleapis.com/tf-datasets/titanic/train.csv")
+pr = df.profile_report()
 
+st_profile_report(pr)
