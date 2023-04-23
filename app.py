@@ -102,3 +102,7 @@ gd.configure_column("id", headerName="id", cellRenderer=JsCode('''function(param
 gridoptions=gd.build()
 
 
+AgGrid(standards_df, gridOptions=gridoptions, allow_unsafe_jscode=True, height=500, theme='alpine')
+
+
+
