@@ -92,13 +92,13 @@ import geopandas as gpd
 
 option = st.selectbox('Select a dataset',('df_1', 'df_2', 'gdf_1'))
 
-if option == df_1:
+if option == "df_1":
  df = pd.read_csv("https://storage.googleapis.com/tf-datasets/titanic/train.csv")
 
-elif option == df_2:
+elif option == "df_2":
  df = pd.read_csv("https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv", dtype={"Year": str, "Timeseries": str},)
 
-elif option == gdf_1:
+elif option == "gdf_1":
  df = gpd.read_file("https://maps.amsterdam.nl/open_geodata/geojson_lnglat.php?KAARTLAAG=FUNCTIEMIX&THEMA=functiemix")
 
  
