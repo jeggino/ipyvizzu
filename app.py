@@ -78,3 +78,27 @@ CHART = chart._repr_html_()
 # display Chart
  
 html(CHART, width=650, height=370)
+
+
+import pandas as pd
+import streamlit as st
+from st_aggrid import AgGrid
+from st_aggrid import JsCode
+from st_aggrid.grid_options_builder import GridOptionsBuilder
+
+
+data_frame = pd.read_csv(
+    "https://ipyvizzu.vizzuhq.com/0.15/assets/data/infinite_data.csv",
+    dtype={"Year": str, "Timeseries": str},
+)
+
+keyword = st.text_input('choose keyword')
+standards_df = data_frame[data_frame['Joy factors'].str.contains(keyword)]
+
+# Display the DataFrame
+gd=GridOptionsBuilder.from_dataframe(standards_df)
+gd.configure_column("id", headerName="id", cellRenderer=JsCode('''function(params) {return '<a href="https://drive.google.com/file/d/' + params.value + '/view" target="_blank">' + params.value + '</a>'}'''),
+                width=300)
+gridoptions=gd.build()
+
+
