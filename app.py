@@ -100,7 +100,7 @@ elif option == "df_2":
 
 elif option == "gdf_1":
  gdf = gpd.read_file("https://maps.amsterdam.nl/open_geodata/geojson_lnglat.php?KAARTLAAG=FUNCTIEMIX&THEMA=functiemix")
- df = pd.DataFrame(gdf)
+ df = pd.DataFrame(gdf.drop(columns='geometry'))
 
  
 AgGrid(df,  allow_unsafe_jscode=True, height=500, theme='alpine')
